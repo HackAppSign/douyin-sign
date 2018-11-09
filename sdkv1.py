@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    抖音2.0之前的v1协议, 本代码仅用于研究之用, HIDDEN_KEY具体值 请联系QQ: 3106195629 
+    抖音2.0之前的as, cp加密算法与协议, 本代码仅用于研究之用, HIDDEN_KEY具体值 请联系QQ: 3106195629 获取
 """
 import hashlib
 
@@ -70,6 +70,24 @@ class calcSig(object):
         return ('%s&as=%s&cp=%s' % (url, sig[:18], sig[18:]))
         # return (sig[:18], sig[18:])
 
+class DouyinSDKV1():
+    def __init__:
+        pass
+    
+    def sign(self, cookie):
+        pass
+    
+    def feed(self):
+        pass
+    
+    def reply(self):
+        pass
+    
+    def like(self):
+        pass
+    
+    
+    
 def main():
     c = calcSig()
     url = '/aweme/v1/comment/list/?aweme_id=6506468984865426696&cursor=0&count=20&comment_style=2&ts=1516946960&app_type=normal&os_api=23&device_type=HUAWEI NXT-AL10&device_platform=android&ssmix=a&iid=22634572655&manifest_version_code=166&dpi=480&uuid=863336037384660&version_code=166&app_name=aweme&version_name=1.6.6&openudid=3f4f9a09bd6ea55e&device_id=46408460323&resolution=1080*1812&os_version=6.0&language=zh&device_brand=HUAWEI&ac=wifi&update_version_code=1662&aid=1128&channel=aweGW&_rticket=1516946961275'
