@@ -9,3 +9,5 @@
 
 众所周知, 抖音v2版本的算法签名为  as, cp, mas, 使用AK/Jadx打开目标apk, 找到签名逻辑
 
+https://carbon.now.sh
+
