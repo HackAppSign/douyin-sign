@@ -17,6 +17,9 @@ https://carbon.now.sh
 ```java
 package com.ss.android.ugc.aweme.feed.api
 
+/**
+ * 获取feed的相关接口, 更多详细信息参见: http://hacksign.liebian.me
+ */
 public class FeedApi {
     public static ChangeQuickRedirect a;
     static final RetrofitApi b = ((RetrofitApi) ((IRetrofitService) ServiceManager.get().getService(IRetrofitService.class)).createNewRetrofit(y.a).create(RetrofitApi.class));
