@@ -71,23 +71,6 @@ class calcSig(object):
         return ('%s&as=%s&cp=%s' % (url, sig[:18], sig[18:]))
         # return (sig[:18], sig[18:])
 
-class DouyinSDKV1():
-    def __init__:
-        pass
-    
-    def sign(self, cookie):
-        pass
-    
-    def feed(self):
-        pass
-    
-    def reply(self):
-        pass
-    
-    def like(self):
-        pass
-    
-    
     
 def main():
     c = calcSig()
