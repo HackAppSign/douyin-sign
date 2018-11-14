@@ -1,7 +1,7 @@
 抖音协议分析
 ==========
 
-> 由于只使用 as, cp的 libuserinfo.so老版本算法都能从网上查到, 这里就不做分析了 
+> 由于只使用 as, cp的 libuserinfo.so老版本算法逻辑都能从网上查到, 这里就不做分析了 
 
 ### 版本信息
 
@@ -10,8 +10,6 @@
 ### 逆向过程
 
 众所周知, 抖音v2版本的算法签名为  as, cp, mas, 使用AK/Jadx打开目标apk, 找到签名逻辑
-
-https://carbon.now.sh
 
 
 ```java
