@@ -1,9 +1,11 @@
 抖音协议分析
 ==========
 
+> 由于只使用 as, cp的 libuserinfo.so老版本算法都能从网上查到, 这里就不做分析了 
+
 ### 版本信息
 
-[v3.1.0](), 算法为新版 as, cp, mas算法
+[v3.1.0](https://share.weiyun.com/5nuuGx4), 算法为新版 as, cp, mas算法
 
 ### 逆向过程
 
