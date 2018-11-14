@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 """
-    抖音2.0之前的as, cp加密算法与协议, 本代码仅用于研究之用, HIDDEN_KEY具体值 请联系QQ: 3106195629 获取
+    抖音2.0之前的as, cp加密算法与协议, 本代码仅用于研究之用, 请勿用于商业用途
     老版本价值不大, 不推荐研究使用
+    新版本请查看: https://github.com/HackAppSign/douyin-sign/blob/master/sdkv2.py
 """
 import hashlib
 
 class calcSig(object):
-    key1 = 'HIDDEN_KEY1'
-    key2 = 'HIDDEN_KEY2'
-    rstr = 'HIDDEN_KEY3'
+    key1 = '57218436'
+    key2 = '15387264'
+    rstr = 'efc84c17'
 
     def shuffle(self, p1, p2):
         p = ''
