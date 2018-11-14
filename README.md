@@ -2,7 +2,7 @@
 
 ### 简介
 
-抖音 as, cp, mas 签名算法, 并能够基于协议进行搜索、刷新、评论、回复、点赞, [项目源地址](https://github.com/HackAppSign/douyin-sign)
+抖音 as, cp, mas 签名算法, 并能够基于协议进行搜索、刷新、评论、回复、点赞, [项目地址](https://github.com/HackAppSign/douyin-sign)
 
 ### 协议分析
 
