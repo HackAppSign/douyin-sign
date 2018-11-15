@@ -12,7 +12,7 @@
 众所周知, 抖音v2版本的算法签名为  as, cp, mas, 使用AK/Jadx打开目标apk, 找到签名逻辑, 在 `com.ss.android.ugc.aweme.app.api.b` 这个类中, 其中签名的逻辑
 为
 
-```
+```java
 /**
  *  更多详细信息参见: http://hacksign.liebian.me
  */
@@ -57,7 +57,10 @@ public static HttpUrl a(HttpUrl httpUrl, List<String> list, int i) {
  
 然后mas是调用 `com.ss.android.common.applog.k.a` 静态方法得来的, 参数为一个byte数组
 
-```
+```java
+/**
+ *  更多详细信息参见: http://hacksign.liebian.me
+ */
 public static String a(byte[] bArr) {
         if (PatchProxy.isSupport(new Object[]{bArr}, null, a, true, 282, new Class[]{byte[].class}, String.class)) {
             return (String) PatchProxy.accessDispatch(new Object[]{bArr}, null, a, true, 282, new Class[]{byte[].class}, String.class);
@@ -78,7 +81,10 @@ public static String a(byte[] bArr) {
 
 j.a的逻辑是取到一个cookie里的sessionId, 许多逆向的研究人员忽略了这一点
 
-```
+```java
+/**
+ *  更多详细信息参见: http://hacksign.liebian.me
+ */
 /* compiled from: SessionUtil */
 public class j {
     public static ChangeQuickRedirect a;
