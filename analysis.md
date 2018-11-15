@@ -3,11 +3,13 @@
 
 > 由于只使用 as, cp的 libuserinfo.so老版本算法逻辑都能从网上查到, 这里就不做分析了 
 
-### 版本信息
+## 版本信息
 
 [v3.1.0](https://share.weiyun.com/5nuuGx4), 算法为新版 as, cp, mas算法
 
-### 逆向过程
+## 逆向过程
+
+### JAVA层面
 
 众所周知, 抖音v2版本的算法签名为  as, cp, mas, 使用AK/Jadx打开目标apk, 找到签名逻辑, 在 `com.ss.android.ugc.aweme.app.api.b` 这个类中, 其中签名的逻辑
 为
@@ -58,10 +60,12 @@ public static HttpUrl a(HttpUrl httpUrl, List<String> list, int i) {
 然后mas是调用 `com.ss.android.common.applog.k.a` 静态方法得来的, 参数为一个byte数组
 
 ```java
+package com.ss.android.common.applog;
 /**
  *  更多详细信息参见: http://hacksign.liebian.me
  */
-public static String a(byte[] bArr) {
+public class k {
+    public static String a(byte[] bArr) {
         if (PatchProxy.isSupport(new Object[]{bArr}, null, a, true, 282, new Class[]{byte[].class}, String.class)) {
             return (String) PatchProxy.accessDispatch(new Object[]{bArr}, null, a, true, 282, new Class[]{byte[].class}, String.class);
         } else if (bArr == null) {
@@ -76,72 +80,13 @@ public static String a(byte[] bArr) {
             }
             return new String(cArr);
         }
-}
-```
-
-`j.a` 的逻辑是取到cookie里的sessionId, **猜测如果在签名过程中没有用这个sessionId, 会导致评论点赞回复失效**
-
-```java
-/**
- *  更多详细信息参见: http://hacksign.liebian.me
- */
-/* compiled from: SessionUtil */
-public class j {
-    public static ChangeQuickRedirect a;
-
-    public static String a() {
-        if (PatchProxy.isSupport(new Object[0], null, a, true, 4700, new Class[0], String.class)) {
-            return (String) PatchProxy.accessDispatch(new Object[0], null, a, true, 4700, new Class[0], String.class);
-        }
-        try {
-            String cookie = CookieManager.getInstance().getCookie(c.f);
-            if (TextUtils.isEmpty(cookie)) {
-                return "";
-            }
-            if (cookie.contains("sessionid=")) {
-                for (String str : cookie.split(Constants.PACKNAME_END)) {
-                    if (str.trim().startsWith("sessionid=")) {
-                        return str.substring("sessionid=".length() + 1);
-                    }
-                }
-            }
-            return "";
-        } catch (Throwable th) {
-        }
     }
 }
 ```
 
+那么 `k.a(byte[] bArr)`的byte数组参数是哪里来的呢? 进一步发现是调用
 
-## 未完待续
+`com.ss.sys.ces.f.a` 这个接口的 `byte[] a(byte[] bArr)` 方法计算的, 该接口的实现类为 `com.ss.sys.ces.b`, 进而发现实际调用的是 `com.ss.sys.ces.a`类中的navtie方法 `public static native byte[] e(byte[] bArr)`, 实现逻辑在 `libcms.so` 中
 
-```java
-package com.ss.android.ugc.aweme.feed.api
 
-/**
- *  更多详细信息参见: http://hacksign.liebian.me
- */
-public class FeedApi {
-    public static ChangeQuickRedirect a;
-    static final RetrofitApi b = ((RetrofitApi) ((IRetrofitService) ServiceManager.get().getService(IRetrofitService.class)).createNewRetrofit(y.a).create(RetrofitApi.class));
 
-    interface RetrofitApi {
-        @f(a = "https://aweme.snssdk.com/aweme/v1/nearby/feed/")
-        k<FeedItemList> fetchNearbyFeed(@t(a = "max_cursor") long j, @t(a = "min_cursor") long j2, @t(a = "count") int i, @t(a = "feed_style") Integer num, @t(a = "aweme_id") String str, @t(a = "filter_warn") int i2, @t(a = "city") String str2, @t(a = "latitude") String str3, @t(a = "longitude") String str4, @t(a = "poi_class_code") int i3);
-
-        @f(a = "https://aweme.snssdk.com/aweme/v1/nearby/feed/")
-        k<FeedItemList> fetchNearbyMockFeed(@t(a = "max_cursor") long j, @t(a = "min_cursor") long j2, @t(a = "count") int i, @t(a = "feed_style") Integer num, @t(a = "aweme_id") String str, @t(a = "filter_warn") int i2, @t(a = "city") String str2);
-
-        @f(a = "https://aweme.snssdk.com/aweme/v1/poi/vertical/aweme/")
-        k<FeedItemList> fetchPoiTypeFeeds(@t(a = "count") int i, @t(a = "feed_style") Integer num, @t(a = "filter_warn") int i2, @t(a = "city_code") String str, @t(a = "latitude") String str2, @t(a = "longitude") String str3, @t(a = "poi_class_code") int i3, @t(a = "cursor") long j);
-
-        @f(a = "/aweme/v1/feed/")
-        i<FeedItemList> fetchRecommendFeed(@t(a = "type") int i, @t(a = "max_cursor") long j, @t(a = "min_cursor") long j2, @t(a = "count") int i2, @t(a = "feed_style") Integer num, @t(a = "aweme_id") String str, @t(a = "volume") double d, @t(a = "pull_type") int i3, @t(a = "need_relieve_aweme") int i4, @t(a = "filter_warn") int i5, @t(a = "req_from") String str2, @t(a = "is_cold_start") int i6);
-
-        @f(a = "https://aweme.snssdk.com/aweme/v1/fresh/feed/")
-        k<FeedTimeLineItemList> fetchTimelineFeed(@t(a = "type") int i, @t(a = "max_time") long j, @t(a = "min_time") long j2, @t(a = "count") int i2, @t(a = "aweme_id") String str, @t(a = "filter_warn") int i3);
-    }
-    
-    //Continue
-}
-```
