@@ -79,7 +79,7 @@ public static String a(byte[] bArr) {
 }
 ```
 
-`j.a` 的逻辑是取到cookie里的sessionId, 猜测如果在签名过程中没有用这个sessionId, 会导致评论点赞回复失效
+`j.a` 的逻辑是取到cookie里的sessionId, **猜测如果在签名过程中没有用这个sessionId, 会导致评论点赞回复失效**
 
 ```java
 /**
