@@ -10,11 +10,7 @@
 
 主要原理是逆向 libcms.so的加密逻辑, [查看分析流程](https://github.com/HackAppSign/douyin-sign/blob/master/analysis.md)
 
-### 商务合作
 
-技术支持请联系QQ: 3106195629
-
-### 功能使用
 
 
 
